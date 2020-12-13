@@ -4,7 +4,7 @@
   "description": "My attempt at building snake in ts",
   "main": "index.ts",
   "scripts": {
-    "dist": "mkdir docs && cd docs && mkdir docs && mkdir game && cd .. && cp dist/es5/* docs/game && cp ./*.html docs/game && cp css/* docs/game",
+    "dist": "mkdir docs && cd docs && mkdir docs && mkdir game && cd game && mkdir css && mkdir src && cd .. && cd .. && cp dist/es5/* docs/game/src && cp ./*.html docs/game && cp css/* docs/game/css",
     "test": "jest",
     "test-watch": "jest --watch",
     "clean": "rimraf -f dist && rimraf -f docs",
