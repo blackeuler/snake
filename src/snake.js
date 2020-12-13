@@ -243,24 +243,27 @@ const draw = () => {
 
 
 setInterval(step, 10, 0);
-const handleKeyPress = (e) => {
-    switch (e.key) {
-        case "ArrowUp":
-            state.currentMove = "Up"
-            break;
-        case "ArrowDown":
-            state.currentMove = "Down"
-            break;
-        case "ArrowRight":
-            state.currentMove = "Right"
-            break;
-        case "ArrowLeft":
-            state.currentMove = "Left"
-            break;
-        default:
-            break;
-    }
+
+
+
+
+
+const hkpHandlers = {
+    ArrowUp: "Up",
+    ArrowDown: "Down",
+    ArrowRight: "Right",
+    ArrowLeft: "Left"
+};
+
+const handleKeyPress = ({ key }) => 
+    const handler = hkpHandlers[key];
+    if (handler) { state.currentMove = handler; }
 }
+
+
+
+
+
 document.addEventListener("keydown", handleKeyPress, false);
 
 document.getElementById("play").addEventListener("onclick",start,false);
