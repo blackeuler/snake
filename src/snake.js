@@ -193,14 +193,21 @@ const foodCollision = state => {
 
 
 const snakeCollides = (s1, s2) => {
-    for (let index = 0; index < s2.length; index++) {
-        const element = s2[index];
-        if (collision(s1[0], element)) {
-            return true;
-        }
+
+  for (let index = 0; index < s2.length; index++) {
+    const element = s2[index];
+    if (collision(s1[0], element)) {
+      return true;
     }
-    return false;
+  }
+
+  return false;
+
 }
+
+
+
+
 
 const snakeCollision = (state) => {
     let newSnakes = []
