@@ -121,50 +121,76 @@ const process_moves = (move, snake) => {
 //
 
 const collision = (p1, p2) => {
-    return (p1.x < p2.x + p2.width &&
-        p1.x + p1.width > p2.x &&
-        p1.y < p2.y + p2.height &&
-        p1.y + p1.height > p2.y)
+  return (
+    (  p1.x              < (p2.x + p2.width)  ) &&
+    ( (p1.x + p1.width)  >  p2.x              ) &&
+    (  p1.y              < (p2.y + p2.height) ) &&
+    ( (p1.y + p1.height) >  p2.y              )
+  )
 }
 
-const wallCollision = (state) => {
-    newSnakes = []
-    for (let index = 0; index < state.snakes.length; index++) {
-        const snake = state.snakes[index];
-        if (snake[0].x < 0 || snake[0].y < 0 || snake[0].y > canvas.height || snake[0].x > canvas.width) {
-            newSnakes[index] = randomSnake();
-        }
-        else {
-            newSnakes[index] = snake;
-        }
+
+
+
+const wallCollision = state => {
+
+  const newSnakes = [];
+
+  for (let index = 0; index < state.snakes.length; ++index) {
+
+    const snake = state.snakes[index];
+
+    const godawfulCriterion = (
+         snake[0].x < 0
+      || snake[0].y < 0
+      || snake[0].y > canvas.height
+      || snake[0].x > canvas.width
+    );
+
+    newSnakes[index] = godawfulCriterion
+      ? randomSnake()
+      : snake;
+
+  }
+
+  return { ...state, snakes: newSnakes };
+
+}
+
+
+
+
+
+const foodCollision = state => {
+
+  let newSnakes = [];
+  let newFood   = [];
+
+  for (let index = 0; index < state.snakes.length; ++index) {
+    const snake = state.snakes[index];
+
+    for (let foodIndex = 0; foodIndex < state.food.length; ++foodIndex) {
+      const food = state.food[foodIndex];
+
+      if (collision(snake[0], food)) {
+        newSnakes[index] = growBy(snake, 8, grow_up);
+        state.food.splice(foodIndex, 1);
+      } else {
+        newSnakes[index]   = snake;
+        newFood[foodIndex] = food;
+      }
+
     }
-    return { ...state, snakes: newSnakes };
-}
 
-const foodCollision = (state) => {
-    let newSnakes = []
-    let newFood = []
-    for (let index = 0; index < state.snakes.length; index++) {
-        const snake = state.snakes[index];
-        for (let foodIndex = 0; foodIndex < state.food.length; foodIndex++) {
-            const food = state.food[foodIndex];
-            if (collision(snake[0], food)) {
-                newSnakes[index] = growBy(snake, 8, grow_up)
-                state.food.splice(foodIndex, 1)
+  }
 
-            }
-            else {
-                newSnakes[index] = snake;
-                newFood[foodIndex] = food;
-            }
-        }
-
-    }
-
-    return { ...state, food: newFood, snakes: newSnakes }
-
+  return { ...state, food: newFood, snakes: newSnakes };
 
 }
+
+
+
+
 
 const snakeCollides = (s1, s2) => {
     for (let index = 0; index < s2.length; index++) {
