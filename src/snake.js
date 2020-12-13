@@ -44,8 +44,18 @@ const growBy = (s, x, g) => {
 }
 
 const snake = () => [];
-const createFood = (x, y) => ({ ...glocation(x, y), width: 15, height: 15 })
-const createSnake = (x, y) => [{ ...glocation(x, y), width: 15, height: 15 }];
+
+
+
+
+
+const createFood = (x, y) => ({ ...glocation(x, y), width: 15, height: 15 });
+const createSnake = (x, y) => [ createFood(x,y) ];
+
+
+
+
+
 const randomSnake = () => createSnake(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height));
 const snakeHead = s => {
     return s[0]
