@@ -1,24 +1,24 @@
 
-const start = () =>
+import { FoodColor, Point, Food, Snake } from './types';
 
+
+
+
+
+const start = () =>
   console.log('todo');
 
-const FOOD_COLORS  =  [ "red", "blue", "green" ];
+const random_location = (boxPoint: Point): Point =>
+  ({ x: Math.random() * boxPoint.x, y: Math.random() * boxPoint.y});
 
-type Point = { x: number, y: number };
-type Food  = { location: Point, color: string };
+const create_food = (location: Point, color: FoodColor): Food =>
+  ({ location, color });
 
-
-const random_location = function (boxPoint: Point) : Point {
-  return { x: Math.random() * boxPoint.x, y: Math.random() * boxPoint.y}
-}
-
-
-const create_food  =  (location: Point, color: string) => ({ location, color });
-
-
-const create_snake = (snakePos: Point, snakeColor: string) => 
+const create_snake = (snakePos: Point, snakeColor: FoodColor): Snake =>
   [ create_food( snakePos, snakeColor) ];
+
+
+
 
 
 export { start, create_snake, create_food, random_location };
