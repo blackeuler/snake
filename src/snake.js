@@ -326,4 +326,3 @@ const handleKeyPress = ({ key }) => {
 
 document.addEventListener("keydown", handleKeyPress, false);
 
-document.getElementById("play").addEventListener("onclick",start,false);
