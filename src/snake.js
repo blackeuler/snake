@@ -14,31 +14,21 @@ document.body.append(canvas);
 // ok lets go with a list what is a coordineate (x,y) value lets use 
 const speed = 2;
 const randomLocation = () => { glocation(Math.random() * canvas.width, Math.random() * canvas.height) }
-const glocation = (x, y) => ({ 'x': x, 'y': y });
-const glocation_left = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x - speed,
-    'y': y,
-    ...model
-});
-const glocation_right = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x + speed,
-    'y': y,
-    ...model
-})
-const glocation_up = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x,
-    'y': y - speed,
-    ...model
-});
-const glocation_down = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x,
-    'y': y + speed,
-    ...model
-});
+
+const glocation = (x, y) => ({ x, y });
+
+const glocation_left  = ({ x, y, ...model }) => ({ x: x-speed, y,          ... model });
+const glocation_right = ({ x, y, ...model }) => ({ x: x+speed, y,          ... model });
+const glocation_up    = ({ x, y, ...model }) => ({ x,          y: y-speed, ... model });
+const glocation_down  = ({ x, y, ...model }) => ({ x,          y: y+speed, ... model });
+
+
+
+
 
 const growBy = (s, x, g) => {
     if (x === 0) {
