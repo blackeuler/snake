@@ -6,8 +6,9 @@
   "scripts": {
     "test": "jest",
     "css-build": "node-sass --omit-source-map-url sass/styles.scss css/styles.css",
-  "css-watch": "npm run css-build -- --watch",
-  "start": "npm run css-watch"
+    "build": "npm run css-build && npm run test",
+    "css-watch": "npm run css-build -- --watch",
+    "start": "npm run css-watch"
   },
   "repository": {
     "type": "git",
