@@ -1,19 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.random_location = exports.create_food = exports.create_snake = exports.start = void 0;
-var start = function () {
-    return console.log('todo');
-};
-exports.start = start;
-var random_location = function (boxPoint) {
-    return ({ x: Math.random() * boxPoint.x, y: Math.random() * boxPoint.y });
-};
-exports.random_location = random_location;
-var create_food = function (location, color) {
-    return ({ location: location, color: color });
-};
-exports.create_food = create_food;
-var create_snake = function (snakePos, snakeColor) {
-    return [create_food(snakePos, snakeColor)];
-};
-exports.create_snake = create_snake;
+var snake = (function (exports) {
+	'use strict';
+
+	const start = () => console.log('todo');
+	const random_location = (boxPoint) => ({ x: Math.random() * boxPoint.x, y: Math.random() * boxPoint.y });
+	const create_food = (location, color) => ({ location, color });
+	const create_snake = (snakePos, snakeColor) => [create_food(snakePos, snakeColor)];
+
+	exports.create_food = create_food;
+	exports.create_snake = create_snake;
+	exports.random_location = random_location;
+	exports.start = start;
+
+	Object.defineProperty(exports, '__esModule', { value: true });
+
+	return exports;
+
+}({}));
