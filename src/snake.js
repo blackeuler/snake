@@ -11,9 +11,12 @@ document.body.append(canvas);
 // A snake, on a black background,
 // I want movement and will need location of a snake
 // How might I represent a snake, a list of coordinates, with color
-// ok lets go with a list what is a coordineate (x,y) value lets use 
+// ok lets go with a list what is a coordineate (x,y) value lets use
+
 const speed = 2;
-const randomLocation = () => { glocation(Math.random() * canvas.width, Math.random() * canvas.height) }
+
+const randomLocation = () =>
+  { glocation(Math.random() * canvas.width, Math.random() * canvas.height) };
 
 
 
@@ -30,26 +33,24 @@ const glocation_down  = ({ x, y, ...model }) => ({ x,          y: y+speed, ... m
 
 
 
-const growBy = (s, x, g) => {
-    if (x === 0) {
-        return s;
-    }
-    else {
+const growBy = (snake, x, g) => {
 
-        w = g(s)
-        console.log(w)
-        return growBy(w, x - 1, g)
-    }
+  if (x === 0) {
+    return snake;
+  } else {
+    w = g(snake);
+    return growBy(w, x-1, g);
+  }
 
 }
 
+
+
+
+
 const snake = () => [];
 
-
-
-
-
-const createFood = (x, y) => ({ ...glocation(x, y), width: 15, height: 15 });
+const createFood  = (x, y) => ({ ...glocation(x, y), width: 15, height: 15 });
 const createSnake = (x, y) => [ createFood(x,y) ];
 
 
@@ -57,23 +58,35 @@ const createSnake = (x, y) => [ createFood(x,y) ];
 
 
 const randomSnake = () => createSnake(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height));
-const snakeHead = s => {
-    return s[0]
-};
+
+const snakeHead = s => { return s[0] };
 const snakeTail = s => s.slice(1, s.length);
-const grow_right = s => [glocation_right(snakeHead(s)), ...s.slice(0, s.length)];
-const grow_left = s => [glocation_leftt(snakeHead(s)), ...s.slice(0, s.length)];
-const grow_up = (s) => [glocation_up(snakeHead(s)), ...s.slice(0, s.length)];
-const grow_down = s => [glocation_down(snakeHead(s)), ...s.slice(0, s.length)];
-const move_right = s => [glocation_right(snakeHead(s)), ...s.slice(0, s.length - 1)];
-const move_left = s => [glocation_left(snakeHead(s)), ...s.slice(0, s.length - 1)];
-const move_up = s => [glocation_up(snakeHead(s)), ...s.slice(0, s.length - 1)];
-const move_down = s => [glocation_down(snakeHead(s)), ...s.slice(0, s.length - 1)];
+
+
+
+
+
+const grow_right = s => [ glocation_right( snakeHead(s) ), ... s.slice(0, s.length) ];
+const grow_left  = s => [ glocation_left(  snakeHead(s) ), ... s.slice(0, s.length) ];
+const grow_up    = s => [ glocation_up(    snakeHead(s) ), ... s.slice(0, s.length) ];
+const grow_down  = s => [ glocation_down(  snakeHead(s) ), ... s.slice(0, s.length) ];
+
+const move_right = s => [ glocation_right( snakeHead(s) ), ... s.slice(0, s.length - 1) ];
+const move_left  = s => [ glocation_left(  snakeHead(s) ), ... s.slice(0, s.length - 1) ];
+const move_up    = s => [ glocation_up(    snakeHead(s) ), ... s.slice(0, s.length - 1) ];
+const move_down  = s => [ glocation_down(  snakeHead(s) ), ... s.slice(0, s.length - 1) ];
+
+
+
+
+
 const initialState = () => ({
-    snakes: [randomSnake(), randomSnake(), randomSnake()]
-    , currentMove: "Up"
-    , food: []
-})
+
+  snakes      : [ randomSnake(), randomSnake(), randomSnake() ],
+  currentMove : "Up",
+  food        : []
+
+});
 
 
 
@@ -89,10 +102,10 @@ const processMoveDirectionPredicates = {
 const process_moves = (move, snake) => {
 
   const move_pred = processMoveDirectionPredicates[move];
-    
+
   if (move_pred) { return move_pred(snake); }
   else           { throw new Error(`Unknown direction '${move}'`); }
-    
+
 }
 
 
@@ -100,10 +113,10 @@ const process_moves = (move, snake) => {
 
 // What snakes we may have examples
 // EXAMPLES----------- A snake starts off as a dot.
-// . . . . 
+// . . . .
 //       .
 //       . . ,
-//           .        
+//           .
 //
 //
 
@@ -113,6 +126,7 @@ const collision = (p1, p2) => {
         p1.y < p2.y + p2.height &&
         p1.y + p1.height > p2.y)
 }
+
 const wallCollision = (state) => {
     newSnakes = []
     for (let index = 0; index < state.snakes.length; index++) {
@@ -126,6 +140,7 @@ const wallCollision = (state) => {
     }
     return { ...state, snakes: newSnakes };
 }
+
 const foodCollision = (state) => {
     let newSnakes = []
     let newFood = []
@@ -200,13 +215,18 @@ const updateSnakes = (state) => {
     }
     return { ...state, snakes: newSnakes }
 }
+
+
+
+
 let state = initialState();
-const step = (t) => {
+
+const step = t => {
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (state.food.length < Math.random() * 20) {
         state.food = [...state.food, createFood(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height))];
     }
-
 
     state = wallCollision(foodCollision(snakeCollision(updateSnakes(state))));
     drawFood(state.food)
@@ -215,36 +235,38 @@ const step = (t) => {
     return t + 1;
 }
 
-const drawBackground = () => ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+
+
+
+const drawBackground = () =>
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 const drawsquare = (color, x, y, size) => {
-    ctx.fillStyle = color;
-    ctx.fillRect(x, y, size, size);
-    ctx.fillStyle = "";
-}
-
-function drawSnakes(snakes) {
-    snakes.map(s => drawSnake(s))
-}
-const drawSnake = (s) => {
-    s.forEach(p => {
-        if (p.head) {
-            drawsquare("yellow", p.x, p.y, p.height)
-        }
-        else {
-            drawsquare("red", p.x, p.y, p.width)
-        }
-    });
-    return s;
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, size, size);
+  ctx.fillStyle = "";
 }
 
 
-const drawFood = (s) => { s.map(p => drawsquare("blue", p.x, p.y, p.width)) }
 
-const draw = () => {
 
-    drawSnake(createSnake(canvas.width / 2, canvas.height / 2));
-}
+
+const drawSnakes = snakes =>
+  snakes.map(s => drawSnake(s));
+
+const drawSnake = s =>
+  s.forEach(p => drawsquare(p.head? "yellow" : "red", p.x, p.y, p.height) );
+
+const drawFood = s =>
+  s.map(p => drawsquare("blue", p.x, p.y, p.width));
+
+const draw = () =>
+  drawSnake(createSnake(canvas.width / 2, canvas.height / 2));
+
+
+
+
 
 
 setInterval(step, 10, 0);
@@ -254,16 +276,16 @@ setInterval(step, 10, 0);
 
 
 const hkpHandlers = {
-    ArrowUp: "Up",
-    ArrowDown: "Down",
-    ArrowRight: "Right",
-    ArrowLeft: "Left"
+  ArrowUp    : "Up",
+  ArrowDown  : "Down",
+  ArrowRight : "Right",
+  ArrowLeft  : "Left"
 };
 
-const handleKeyPress = ({ key }) => 
-    const handler = hkpHandlers[key];
-    if (handler) { state.currentMove = handler; }
-}
+const handleKeyPress = ({ key }) => {
+  const handler = hkpHandlers[key];
+  if (handler) { state.currentMove = handler; }
+};
 
 
 
