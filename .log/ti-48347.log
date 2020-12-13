@@ -1,0 +1,28 @@
+[04:03:12.857] Global cache location '/Users/blackeuler/Library/Caches/typescript/4.1', safe file path '/usr/local/lib/node_modules/typescript/lib/typingsafelist.json', types map path /usr/local/lib/node_modules/typescript/lib/typesmap.json
+[04:03:12.858] Processing cache location '/Users/blackeuler/Library/Caches/typescript/4.1'
+[04:03:12.859] Trying to find '/Users/blackeuler/Library/Caches/typescript/4.1/package.json'...
+[04:03:12.859] Finished processing cache location '/Users/blackeuler/Library/Caches/typescript/4.1'
+[04:03:12.859] Process id: 48351
+[04:03:12.859] NPM location: /usr/local/Cellar/node/15.2.1/bin/npm (explicit '--npmLocation' not  provided)
+[04:03:12.860] validateDefaultNpmLocation: false
+[04:03:12.860] Npm config file: /Users/blackeuler/Library/Caches/typescript/4.1/package.json
+[04:03:12.860] Updating types-registry npm package...
+[04:03:12.860] Exec: /usr/local/Cellar/node/15.2.1/bin/npm install --ignore-scripts types-registry@latest
+[04:03:12.867]     Failed. stdout:
+    stderr:
+    /bin/sh: /usr/local/Cellar/node/15.2.1/bin/npm: No such file or directory
+    
+[04:03:12.867] Updated types-registry npm package
+[04:03:12.867] Types registry file '/Users/blackeuler/Library/Caches/typescript/4.1/node_modules/types-registry/index.json' does not exist
+[04:03:14.192] Got install request {"projectName":"/dev/null/inferredProject1*","fileNames":["/usr/local/lib/node_modules/typescript/lib/lib.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.es5.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.dom.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.webworker.importscripts.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.scripthost.d.ts","/Users/blackeuler/snake/src/snake.js"],"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true,"maxNodeModuleJsDepth":2},"typeAcquisition":{"enable":true,"include":[],"exclude":[]},"unresolvedImports":[],"projectRootPath":"/Users/blackeuler/snake/src","kind":"discover"}
+[04:03:14.212] Loaded safelist from types map file '/usr/local/lib/node_modules/typescript/lib/typesmap.json'
+[04:03:14.213] Explicitly included types: []
+[04:03:14.214] Inferred typings from unresolved imports: []
+[04:03:14.214] Result: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/blackeuler/snake/src/bower_components","/Users/blackeuler/snake/src/node_modules"]}
+[04:03:14.214] Finished typings discovery: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/blackeuler/snake/src/bower_components","/Users/blackeuler/snake/src/node_modules"]}
+[04:03:14.214] DirectoryWatcher:: Added:: WatchInfo: /Users/blackeuler/snake/src/bower_components
+[04:03:14.216] DirectoryWatcher:: Added:: WatchInfo: /Users/blackeuler/snake/src/node_modules
+[04:03:14.216] Sending response:
+    {"projectName":"/dev/null/inferredProject1*","typeAcquisition":{"enable":true,"include":[],"exclude":[]},"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true,"maxNodeModuleJsDepth":2},"typings":[],"unresolvedImports":[],"kind":"action::set"}
+[04:03:14.216] Response has been sent.
+[04:03:14.216] No new typings were requested as a result of typings discovery

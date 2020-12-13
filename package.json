@@ -1,0 +1,29 @@
+{
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "My attempt at building snake in ts",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest",
+    "css-build": "node-sass --omit-source-map-url sass/styles.scss css/styles.css",
+  "css-watch": "npm run css-build -- --watch",
+  "start": "npm run css-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/blackeuler/snake"
+  },
+  "keywords": [
+    "snake",
+    "game",
+    "fun"
+  ],
+  "author": "monadicblack",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.12.7",
+    "bulma": "^0.9.1",
+    "jest": "^26.6.3",
+    "node-sass": "^5.0.0"
+  }
+}

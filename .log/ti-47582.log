@@ -1,0 +1,47 @@
+[02:43:26.509] Global cache location '/Users/blackeuler/Library/Caches/typescript/4.1', safe file path '/usr/local/lib/node_modules/typescript/lib/typingsafelist.json', types map path /usr/local/lib/node_modules/typescript/lib/typesmap.json
+[02:43:26.510] Processing cache location '/Users/blackeuler/Library/Caches/typescript/4.1'
+[02:43:26.510] Trying to find '/Users/blackeuler/Library/Caches/typescript/4.1/package.json'...
+[02:43:26.511] Finished processing cache location '/Users/blackeuler/Library/Caches/typescript/4.1'
+[02:43:26.511] Process id: 47586
+[02:43:26.511] NPM location: /usr/local/Cellar/node/15.2.1/bin/npm (explicit '--npmLocation' not  provided)
+[02:43:26.512] validateDefaultNpmLocation: false
+[02:43:26.512] Npm config file: /Users/blackeuler/Library/Caches/typescript/4.1/package.json
+[02:43:26.512] Npm config file: '/Users/blackeuler/Library/Caches/typescript/4.1/package.json' is missing, creating new one...
+[02:43:26.513] Updating types-registry npm package...
+[02:43:26.513] Exec: /usr/local/Cellar/node/15.2.1/bin/npm install --ignore-scripts types-registry@latest
+[02:43:26.520]     Failed. stdout:
+    stderr:
+    /bin/sh: /usr/local/Cellar/node/15.2.1/bin/npm: No such file or directory
+    
+[02:43:26.520] Updated types-registry npm package
+[02:43:26.521] Types registry file '/Users/blackeuler/Library/Caches/typescript/4.1/node_modules/types-registry/index.json' does not exist
+[02:44:12.341] Got install request {"projectName":"/dev/null/inferredProject2*","fileNames":["/usr/local/lib/node_modules/typescript/lib/lib.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.es5.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.dom.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.webworker.importscripts.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.scripthost.d.ts","/Users/blackeuler/snake/src/snake.js"],"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true,"maxNodeModuleJsDepth":2},"typeAcquisition":{"enable":true,"include":[],"exclude":[]},"unresolvedImports":[],"projectRootPath":"/Users/blackeuler/snake/src","kind":"discover"}
+[02:44:12.361] Loaded safelist from types map file '/usr/local/lib/node_modules/typescript/lib/typesmap.json'
+[02:44:12.362] Explicitly included types: []
+[02:44:12.362] Inferred typings from unresolved imports: []
+[02:44:12.363] Result: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/blackeuler/snake/src/bower_components","/Users/blackeuler/snake/src/node_modules"]}
+[02:44:12.363] Finished typings discovery: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/blackeuler/snake/src/bower_components","/Users/blackeuler/snake/src/node_modules"]}
+[02:44:12.363] DirectoryWatcher:: Added:: WatchInfo: /Users/blackeuler/snake/src/bower_components
+[02:44:12.364] DirectoryWatcher:: Added:: WatchInfo: /Users/blackeuler/snake/src/node_modules
+[02:44:12.365] Sending response:
+    {"projectName":"/dev/null/inferredProject2*","typeAcquisition":{"enable":true,"include":[],"exclude":[]},"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true,"maxNodeModuleJsDepth":2},"typings":[],"unresolvedImports":[],"kind":"action::set"}
+[02:44:12.365] Response has been sent.
+[02:44:12.365] No new typings were requested as a result of typings discovery
+[02:44:12.727] Got install request {"projectName":"/dev/null/inferredProject2*","fileNames":[],"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true},"typeAcquisition":{"enable":true,"include":[],"exclude":[]},"unresolvedImports":[],"projectRootPath":"/Users/blackeuler/snake/src","kind":"discover"}
+[02:44:12.727] Explicitly included types: []
+[02:44:12.728] Inferred typings from unresolved imports: []
+[02:44:12.729] Result: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/blackeuler/snake/src/bower_components","/Users/blackeuler/snake/src/node_modules"]}
+[02:44:12.729] Finished typings discovery: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/blackeuler/snake/src/bower_components","/Users/blackeuler/snake/src/node_modules"]}
+[02:44:12.730] Sending response:
+    {"projectName":"/dev/null/inferredProject2*","typeAcquisition":{"enable":true,"include":[],"exclude":[]},"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true},"typings":[],"unresolvedImports":[],"kind":"action::set"}
+[02:44:12.730] Response has been sent.
+[02:44:12.730] No new typings were requested as a result of typings discovery
+[02:50:25.500] Got install request {"projectName":"/dev/null/inferredProject2*","fileNames":["/usr/local/lib/node_modules/typescript/lib/lib.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.es5.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.dom.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.webworker.importscripts.d.ts","/usr/local/lib/node_modules/typescript/lib/lib.scripthost.d.ts","/Users/blackeuler/snake/src/snake.js"],"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true,"maxNodeModuleJsDepth":2},"typeAcquisition":{"enable":true,"include":[],"exclude":[]},"unresolvedImports":[],"projectRootPath":"/Users/blackeuler/snake/src","kind":"discover"}
+[02:50:25.501] Explicitly included types: []
+[02:50:25.501] Inferred typings from unresolved imports: []
+[02:50:25.501] Result: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/blackeuler/snake/src/bower_components","/Users/blackeuler/snake/src/node_modules"]}
+[02:50:25.501] Finished typings discovery: {"cachedTypingPaths":[],"newTypingNames":[],"filesToWatch":["/Users/blackeuler/snake/src/bower_components","/Users/blackeuler/snake/src/node_modules"]}
+[02:50:25.502] Sending response:
+    {"projectName":"/dev/null/inferredProject2*","typeAcquisition":{"enable":true,"include":[],"exclude":[]},"compilerOptions":{"target":1,"jsx":1,"allowNonTsExtensions":true,"allowJs":true,"noEmitForJsFiles":true,"maxNodeModuleJsDepth":2},"typings":[],"unresolvedImports":[],"kind":"action::set"}
+[02:50:25.502] Response has been sent.
+[02:50:25.502] No new typings were requested as a result of typings discovery
