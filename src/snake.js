@@ -11,47 +11,40 @@ document.body.append(canvas);
 // A snake, on a black background,
 // I want movement and will need location of a snake
 // How might I represent a snake, a list of coordinates, with color
-// ok lets go with a list what is a coordineate (x,y) value lets use 
+// ok lets go with a list what is a coordineate (x,y) value lets use
 const speed = 2;
 const randomLocation = () => { glocation(Math.random() * canvas.width, Math.random() * canvas.height) }
-const glocation = (x, y) => ({ 'x': x, 'y': y });
-const glocation_left = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x - speed,
-    'y': y,
-    ...model
-});
-const glocation_right = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x + speed,
-    'y': y,
-    ...model
-})
-const glocation_up = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x,
-    'y': y - speed,
-    ...model
-});
-const glocation_down = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x,
-    'y': y + speed,
-    ...model
-});
 
-const growBy = (s, x, g) => {
-    if (x === 0) {
-        return s;
-    }
-    else {
+const glocation = (x, y) => ({ x, y });
 
-        w = g(s)
-        console.log(w)
-        return growBy(w, x - 1, g)
-    }
+const glocation_left  = ({ x, y, ... model }) => ({ x: x-speed, y,          ... model });
+const glocation_right = ({ x, y, ... model }) => ({ x: x+speed, y,          ... model });
+const glocation_up    = ({ x, y, ... model }) => ({ x,          y: y-speed, ... model });
+const glocation_down  = ({ x, y, ... model }) => ({ x,          y: y+speed, ... model });
+
+
+
+
+
+const growBy = (snake, x_value, growth_func) => {
+
+  if (x_value === 0) {
+    return s;
+  } else {
+    w = g(s)
+    console.log(w)
+    return growBy(w, x_value - 1, growth_func)
+  }
 
 }
+
+
+
+
 
 const snake = () => [];
 const createFood = (x, y) => ({ ...glocation(x, y), width: 15, height: 15 })
@@ -95,10 +88,10 @@ const process_moves = (move, snake) => {
 }
 // What snakes we may have examples
 // EXAMPLES----------- A snake starts off as a dot.
-// . . . . 
+// . . . .
 //       .
 //       . . ,
-//           .        
+//           .
 //
 //
 
