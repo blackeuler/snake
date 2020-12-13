@@ -14,31 +14,21 @@ document.body.append(canvas);
 // ok lets go with a list what is a coordineate (x,y) value lets use 
 const speed = 2;
 const randomLocation = () => { glocation(Math.random() * canvas.width, Math.random() * canvas.height) }
-const glocation = (x, y) => ({ 'x': x, 'y': y });
-const glocation_left = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x - speed,
-    'y': y,
-    ...model
-});
-const glocation_right = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x + speed,
-    'y': y,
-    ...model
-})
-const glocation_up = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x,
-    'y': y - speed,
-    ...model
-});
-const glocation_down = ({ 'x': x, 'y': y, ...model }) => ({
 
-    'x': x,
-    'y': y + speed,
-    ...model
-});
+
+const glocation = (x, y) => ({ x, y });
+
+const glocation_left  = ({ x, y, ...model }) => ({ x: x-speed, y,          ... model });
+const glocation_right = ({ x, y, ...model }) => ({ x: x+speed, y,          ... model });
+const glocation_up    = ({ x, y, ...model }) => ({ x,          y: y-speed, ... model });
+const glocation_down  = ({ x, y, ...model }) => ({ x,          y: y+speed, ... model });
+
+
+
+
 
 const growBy = (s, x, g) => {
     if (x === 0) {
@@ -54,8 +44,18 @@ const growBy = (s, x, g) => {
 }
 
 const snake = () => [];
-const createFood = (x, y) => ({ ...glocation(x, y), width: 15, height: 15 })
-const createSnake = (x, y) => [{ ...glocation(x, y), width: 15, height: 15 }];
+
+
+
+
+
+const createFood = (x, y) => ({ ...glocation(x, y), width: 15, height: 15 });
+const createSnake = (x, y) => [ createFood(x,y) ];
+
+
+
+
+
 const randomSnake = () => createSnake(Math.floor(Math.random() * canvas.width), Math.floor(Math.random() * canvas.height));
 const snakeHead = s => {
     return s[0]
@@ -79,20 +79,25 @@ const initialState = () => ({
 
 
 
+const processMoveDirectionPredicates = {
+    Left  : move_left,
+    Right : move_right,
+    Up    : move_up,
+    Down  : move_down
+};
+
 const process_moves = (move, snake) => {
-    switch (move) {
-        case "Left":
-            return move_left(snake);
-        case "Right":
-            return move_right(snake);
-        case "Up":
-            return move_up(snake);
-        case "Down":
-            return move_down(snake);
-        default:
-            break;
-    }
+
+  const move_pred = processMoveDirectionPredicates[move];
+    
+  if (move_pred) { return move_pred(snake); }
+  else           { throw new Error(`Unknown direction '${move}'`); }
+    
 }
+
+
+
+
 // What snakes we may have examples
 // EXAMPLES----------- A snake starts off as a dot.
 // . . . . 
@@ -243,24 +248,27 @@ const draw = () => {
 
 
 setInterval(step, 10, 0);
-const handleKeyPress = (e) => {
-    switch (e.key) {
-        case "ArrowUp":
-            state.currentMove = "Up"
-            break;
-        case "ArrowDown":
-            state.currentMove = "Down"
-            break;
-        case "ArrowRight":
-            state.currentMove = "Right"
-            break;
-        case "ArrowLeft":
-            state.currentMove = "Left"
-            break;
-        default:
-            break;
-    }
+
+
+
+
+
+const hkpHandlers = {
+    ArrowUp: "Up",
+    ArrowDown: "Down",
+    ArrowRight: "Right",
+    ArrowLeft: "Left"
+};
+
+const handleKeyPress = ({ key }) => 
+    const handler = hkpHandlers[key];
+    if (handler) { state.currentMove = handler; }
 }
+
+
+
+
+
 document.addEventListener("keydown", handleKeyPress, false);
 
 document.getElementById("play").addEventListener("onclick",start,false);
