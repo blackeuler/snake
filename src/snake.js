@@ -5,6 +5,13 @@ canvas.width = window.innerWidth;
 const ctx = canvas.getContext("2d");
 document.body.append(canvas);
 
+const using_debug = true;
+
+const debug_log = l =>
+  using_debug? console.log(l) : true;
+
+
+
 
 
 // What do I want to work with for now
@@ -54,38 +61,55 @@ const snakeHead = s => {
     return s[0]
 };
 const snakeTail = s => s.slice(1, s.length);
-const grow_right = s => [glocation_right(snakeHead(s)), ...s.slice(0, s.length)];
-const grow_left = s => [glocation_leftt(snakeHead(s)), ...s.slice(0, s.length)];
-const grow_up = (s) => [glocation_up(snakeHead(s)), ...s.slice(0, s.length)];
-const grow_down = s => [glocation_down(snakeHead(s)), ...s.slice(0, s.length)];
-const move_right = s => [glocation_right(snakeHead(s)), ...s.slice(0, s.length - 1)];
-const move_left = s => [glocation_left(snakeHead(s)), ...s.slice(0, s.length - 1)];
-const move_up = s => [glocation_up(snakeHead(s)), ...s.slice(0, s.length - 1)];
-const move_down = s => [glocation_down(snakeHead(s)), ...s.slice(0, s.length - 1)];
+
+
+
+
+
+const grow_right = s => [ glocation_right(snakeHead(s)), ... s.slice(0, s.length) ];
+const grow_left  = s => [ glocation_left(snakeHead(s)),  ... s.slice(0, s.length) ];
+const grow_up    = s => [ glocation_up(snakeHead(s)),    ... s.slice(0, s.length) ];
+const grow_down  = s => [ glocation_down(snakeHead(s)),  ... s.slice(0, s.length) ];
+
+const move_right = s => [ glocation_right(snakeHead(s)), ... s.slice(0, s.length - 1) ];
+const move_left  = s => [ glocation_left(snakeHead(s)),  ... s.slice(0, s.length - 1) ];
+const move_up    = s => [ glocation_up(snakeHead(s)),    ... s.slice(0, s.length - 1) ];
+const move_down  = s => [ glocation_down(snakeHead(s)),  ... s.slice(0, s.length - 1) ];
+
+
+
+
+
 const initialState = () => ({
-    snakes: [randomSnake(), randomSnake(), randomSnake()]
-    , currentMove: "Up"
-    , food: []
+    snakes      : [ randomSnake(), randomSnake(), randomSnake() ],  // colliding snakes are not the bees knees at all
+    currentMove : "Up",
+    food        : []
 })
 
 
 
 
 
+const movementFunctions = {
+  Left  : move_left,
+  Right : move_right,
+  Up    : move_up,
+  Down  : move_down
+};
+
 const process_moves = (move, snake) => {
-    switch (move) {
-        case "Left":
-            return move_left(snake);
-        case "Right":
-            return move_right(snake);
-        case "Up":
-            return move_up(snake);
-        case "Down":
-            return move_down(snake);
-        default:
-            break;
-    }
+
+  const move_pred = movementFunctions[move];
+
+  if (move_pred) { return move_pred(snake); }
+  else           { throw new Error(`No such direction ${move}`); } // wait this language has error handling?
+
 }
+
+
+
+
+
 // What snakes we may have examples
 // EXAMPLES----------- A snake starts off as a dot.
 // . . . .
@@ -227,33 +251,47 @@ const drawSnake = (s) => {
 }
 
 
-const drawFood = (s) => { s.map(p => drawsquare("blue", p.x, p.y, p.width)) }
 
-const draw = () => {
 
-    drawSnake(createSnake(canvas.width / 2, canvas.height / 2));
-}
+
+
+const drawFood = s =>
+  s.map(p => drawsquare("blue", p.x, p.y, p.width));
+
+const draw = () =>
+  drawSnake(createSnake(canvas.width / 2, canvas.height / 2));
+
+
+
 
 
 setInterval(step, 10, 0);
-const handleKeyPress = (e) => {
-    switch (e.key) {
-        case "ArrowUp":
-            state.currentMove = "Up"
-            break;
-        case "ArrowDown":
-            state.currentMove = "Down"
-            break;
-        case "ArrowRight":
-            state.currentMove = "Right"
-            break;
-        case "ArrowLeft":
-            state.currentMove = "Left"
-            break;
-        default:
-            break;
-    }
+
+
+
+
+
+const arrowKeysToCurrentMoveResults = {
+  ArrowUp    : "Up",
+  ArrowDown  : "Down",
+  ArrowLeft  : "Left",
+  ArrowRight : "Right"
+};
+
+const handleKeyPress = ({ key }) => {
+
+  if (arrowKeysToCurrentMoveResults[key]) {
+    state.currentMove = arrowKeysToCurrentMoveResults[key];
+  } else {
+    debug_log(`No registered key handler for '${key}'`)
+  }
+
 }
+
+
+
+
+
 document.addEventListener("keydown", handleKeyPress, false);
 
 document.getElementById("play").addEventListener("onclick",start,false);
