@@ -79,20 +79,25 @@ const initialState = () => ({
 
 
 
+const processMoveDirectionPredicates = {
+    Left  : move_left,
+    Right : move_right,
+    Up    : move_up,
+    Down  : move_down
+};
+
 const process_moves = (move, snake) => {
-    switch (move) {
-        case "Left":
-            return move_left(snake);
-        case "Right":
-            return move_right(snake);
-        case "Up":
-            return move_up(snake);
-        case "Down":
-            return move_down(snake);
-        default:
-            break;
-    }
+
+  const move_pred = processMoveDirectionPredicates[move];
+    
+  if (move_pred) { return move_pred(snake); }
+  else           { throw new Error(`Unknown direction '${move}'`); }
+    
 }
+
+
+
+
 // What snakes we may have examples
 // EXAMPLES----------- A snake starts off as a dot.
 // . . . . 
