@@ -1,4 +1,12 @@
-const { create_snake, create_food, random_location, random_snake, start, translate_point } = require('../src/snake.ts');
+const { 
+  create_snake, 
+  create_food, 
+  random_location, 
+  random_snake, 
+  start, 
+  translate_point, 
+  move_snake, 
+  eq_location } = require('../src/snake.ts');
 
 
 
@@ -35,3 +43,34 @@ test('translate a point ', () =>
     
     expect( translate_point(start_point, translate_by) ).toEqual( end_point );
   });
+
+  test("equality of points", () => {
+    const start_point  = { x: 3, y: 3 };
+    expect(eq_location(start_point,start_point)).toEqual(true);
+  })
+
+
+  describe('Snake Movement', () => {
+    const snake = [ 
+      { location: { x: 0, y: 0 }, color: "red" },
+      { location: { x: 1, y: 0 }, color: "red" },
+      { location: { x: 1, y: 1 }, color: "red" },
+    ];
+
+
+  test('cant move snake on itself', () => {
+      expect(move_snake("right",snake)).toEqual(snake)
+    });
+
+    // The head of the list is for now the 0th index
+    test('moves up', () => {
+      const up = [ 
+        { location: { x: 0, y: 1 }, color: "red" },
+        { location: { x: 0, y: 0 }, color: "red" },
+        { location: { x: 1, y: 0 }, color: "red" },
+      ];
+      expect(move_snake("up",snake)).toEqual(up);
+    })
+
+  });
+
