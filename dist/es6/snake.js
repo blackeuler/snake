@@ -13,6 +13,7 @@ const direction_translate_by = {
 const move_snake = (direction, snake) => {
     const head = snake[0];
     const body = snake.slice(1, snake.length);
+    //TODO Clean Up
     const new_head = {
         location: translate_point(head.location, direction_translate_by[direction]),
         color: head.color
@@ -20,7 +21,16 @@ const move_snake = (direction, snake) => {
     const new_snake = [new_head, head, ...body.slice(0, body.length - 1)];
     return eq_location(new_head.location, body[0].location) ? snake : new_snake;
 };
+const grow_snake = (direction, snake) => {
+    //TODO Clean Up
+    const new_tail = {
+        location: translate_point(snake[snake.length - 1].location, reflect_point(direction_translate_by[direction])),
+        color: snake[snake.length - 1].color
+    };
+    return [...snake, new_tail];
+};
 const translate_point = (point, translateBy) => ({ x: point.x + translateBy.x,
     y: point.y + translateBy.y
 });
-export { start, create_snake, random_snake, create_food, random_location, translate_point, move_snake, eq_location };
+const reflect_point = ({ x, y }) => ({ x: -x, y: -y });
+export { start, create_snake, random_snake, create_food, random_location, translate_point, move_snake, eq_location, reflect_point, grow_snake };
