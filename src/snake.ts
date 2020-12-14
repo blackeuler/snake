@@ -23,4 +23,12 @@ const random_snake = (box_point: Point): Snake =>
 
 
 
-export { start, create_snake, random_snake, create_food, random_location };
+
+const translate_point = (point: Point, translateBy: Point): Point =>
+  ({ x: point.x + translateBy.x, 
+     y: point.y + translateBy.y 
+  })
+
+
+  export { start, create_snake, random_snake, create_food, random_location, translate_point };
+
