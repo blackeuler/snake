@@ -1,11 +1,11 @@
-const { 
-  create_snake, 
-  create_food, 
-  random_location, 
-  random_snake, 
-  start, 
-  translate_point, 
-  move_snake, 
+const {
+  create_snake,
+  create_food,
+  random_location,
+  random_snake,
+  start,
+  translate_point,
+  move_snake,
   reflect_point,
   grow_snake,
   eq_location } = require('../src/snake.ts');
@@ -37,12 +37,12 @@ test('create snake returns list of length 1',()=>{
     expect(create_snake()).toHaveLength(1);
   });
 
-test('translate a point ', () => 
+test('translate a point ', () =>
   {
     const start_point  = { x: 3                , y: 3                 };
     const translate_by = { x: 1                , y: 1                 };
-    const end_point    = { x: start_point.x + 1, y: start_point.y + 1 }; 
-    
+    const end_point    = { x: start_point.x + 1, y: start_point.y + 1 };
+
     expect( translate_point(start_point, translate_by) ).toEqual( end_point );
   });
 
@@ -59,7 +59,7 @@ test("equality of points", () => {
 
 
   describe('Snake Movement', () => {
-    const snake = [ 
+    const snake = [
       { location: { x: 0, y: 0 }, color: "red" },
       { location: { x: 1, y: 0 }, color: "red" },
       { location: { x: 1, y: 1 }, color: "red" },
@@ -72,7 +72,7 @@ test("equality of points", () => {
 
     // The head of the list is for now the 0th index
     test('moves up', () => {
-      const up = [ 
+      const up = [
         { location: { x: 0, y: 1 }, color: "red" },
         { location: { x: 0, y: 0 }, color: "red" },
         { location: { x: 1, y: 0 }, color: "red" },
@@ -83,7 +83,7 @@ test("equality of points", () => {
   });
 
   describe('Snake Growth', () => {
-    const snake = [ 
+    const snake = [
       { location: { x: 0, y: 0 }, color: "red" },
       { location: { x: 1, y: 0 }, color: "red" },
       { location: { x: 1, y: 1 }, color: "red" },
@@ -91,11 +91,11 @@ test("equality of points", () => {
 
 
     test("grows", () => {
-      const new_snake = [ 
+      const new_snake = [
         { location: { x: 0, y: 0 }, color: "red" },
         { location: { x: 1, y: 0 }, color: "red" },
         { location: { x: 1, y: 1 }, color: "red" },
-        { location: { x: 2, y: 1 }, color: "red" } 
+        { location: { x: 2, y: 1 }, color: "red" }
       ];
 
       expect(grow_snake("left",snake)).toEqual(new_snake)

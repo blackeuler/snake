@@ -1,13 +1,12 @@
-
 const iife_config = {
 
-  input     : 'dist/es6/snake.js',
+    input: 'dist/es6/game.js',
 
-  output    : {
-    file      : 'dist/es5/snake.js',
-    format    : 'iife',
-    name      : 'snake'
-  }
+    output: {
+        file: 'dist/es5/snake.js',
+        format: 'iife',
+        name: 'snake'
+    }
 
 };
 
@@ -15,4 +14,4 @@ const iife_config = {
 
 
 
-export default [ iife_config ];
+export default [iife_config];

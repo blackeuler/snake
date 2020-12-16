@@ -14,8 +14,19 @@ const random_location = (boxPoint: Point): Point =>
 const eq_location = (point1: Point, point2: Point): Boolean =>
   (point1.x === point2.x && point1.y === point2.y)
 
+
+const random_color = (): FoodColor =>{
+	const colors: FoodColor[] = ["red", "blue", "green"];
+	return colors[Math.floor(Math.random() * 4)]
+}
+
 const create_food = (location: Point, color: FoodColor): Food =>
   ({ location, color });
+const random_food = (box_point: Point): Food =>
+	create_food( random_location( box_point ), random_color() )
+
+
+
 
 const create_snake = (snakePos: Point, snakeColor: FoodColor): Snake =>
   ([ create_food( snakePos, snakeColor) ]);
@@ -37,7 +48,7 @@ const move_snake =  (direction: Direction, snake: Snake) =>{
   const body = snake.slice(1,snake.length);
 
   //TODO Clean Up
-  const new_head = { 
+  const new_head = {
     location: translate_point( head.location, direction_translate_by[direction] ) ,
     color   : head.color
   };
@@ -53,21 +64,21 @@ const move_snake =  (direction: Direction, snake: Snake) =>{
 const grow_snake = ( direction: Direction, snake: Snake ): Snake =>{
   //TODO Clean Up
   const new_tail = {
-    location: translate_point( snake[snake.length -1].location, reflect_point(direction_translate_by[direction]) ), 
+    location: translate_point( snake[snake.length -1].location, reflect_point(direction_translate_by[direction]) ),
     color: snake[snake.length-1].color}
   return [...snake, new_tail]
 }
-  
+
 
 
 const translate_point = (point: Point, translateBy: Point): Point =>
-  ({ x: point.x + translateBy.x, 
-     y: point.y + translateBy.y 
+  ({ x: point.x + translateBy.x,
+     y: point.y + translateBy.y
   })
 const reflect_point = ({ x, y }: Point): Point =>
   ({ x: -x, y: -y})
 
 
 
-  export { start, create_snake, random_snake, create_food, random_location, translate_point, move_snake, eq_location, reflect_point, grow_snake };
+export { start, create_snake, random_snake,random_food, create_food, random_location, translate_point, move_snake, eq_location, reflect_point, grow_snake };
 
