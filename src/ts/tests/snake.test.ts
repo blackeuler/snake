@@ -8,7 +8,7 @@ const {
   move_snake, 
   reflect_point,
   grow_snake,
-  eq_location } = require('../snake.ts');
+  eq_location } = require('../snake');
 
 
 
