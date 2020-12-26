@@ -20,9 +20,8 @@
   "include": [
     "./src/ts/**/*.ts"
   ],
-    "exclude":[
-        "./src/ts/tests/*"
-    ]
-
+  "exclude":[
+    "./src/ts/tests/*"
+  ]
 
 }
