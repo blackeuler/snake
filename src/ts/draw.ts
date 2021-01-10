@@ -1,17 +1,16 @@
-import { create_food, random_location } from './snake';
-import {Square, Screen, Food} from './types'
+import { create_food } from './snake';
+import { Game, Square, Screen, Food} from './types';
+import { random_location } from './point';
 
-const start_game = (): void =>{
+const create_screen = (): Screen => {
   const canvas  = document.createElement("canvas");
   canvas.height = window.innerHeight;
   canvas.width  = window.innerWidth;
   const screen  = canvas.getContext("2d")!;
   document.body.append(canvas);
-  const exFood =  create_food(random_location({x: 3, y:30}),"red")
-  draw_food(exFood, screen);
+  return screen;
 
 }
-
 
 
 const draw_square = (square: Square, screen: Screen): void => {
@@ -21,10 +20,22 @@ const draw_square = (square: Square, screen: Screen): void => {
                   square.size,
                   square.size);
 }
-
-const draw_food  = ( food: Food, screen: Screen): void =>
+const clear_screen = (screen: Screen): void =>{
+  screen.fillStyle = "white";
+  screen.fillRect(0,0, window.innerWidth,window.innerHeight);
+}
+const draw_food  = ( food: Food, screen: Screen ): void =>
   draw_square( {...food, size: 20} ,screen)
 
-start_game();
+const draw_game_food = (food: Food[], screen: Screen): void =>{
+  food.map(f => draw_food(f,screen));
+}
 
-export {start_game};
+const draw_game  = ( game: Game, screen: Screen ): void =>{
+  clear_screen(screen);
+  draw_game_food(game.food, screen);
+  draw_game_food(game.snake, screen);
+}
+
+
+export {create_screen, draw_game}

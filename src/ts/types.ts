@@ -12,4 +12,9 @@ type Square    = { location: Point, color: Color, size: number };
 
 type Screen    = CanvasRenderingContext2D;
 
-export { FoodColor, Point, Food, Snake, Direction, Color, Square, Screen };
+
+type Game      = { snake: Snake, food: Food[] }
+
+
+
+export { Game ,FoodColor, Point, Food, Snake, Direction, Color, Square, Screen };

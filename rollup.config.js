@@ -1,7 +1,7 @@
 
 const iife_config = {
 
-  input     : 'dist/es6/draw.js',
+  input     : ['dist/es6/game.js' ],
 
   output    : {
     file      : 'dist/es5/snake.iife.js',
