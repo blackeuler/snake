@@ -1,36 +1,46 @@
-const start = () => console.log('todo');
-const random_location = (boxPoint) => ({ x: Math.random() * boxPoint.x, y: Math.random() * boxPoint.y });
-const eq_location = (point1, point2) => (point1.x === point2.x && point1.y === point2.y);
+import { translate_point, random_location, reflect_point, collision } from './point';
 const create_food = (location, color) => ({ location, color });
+const translate_food = (food, direction) => (Object.assign(Object.assign({}, food), { location: translate_point(food.location, direction_grow_by[direction]) }));
 const create_snake = (snakePos, snakeColor) => ([create_food(snakePos, snakeColor)]);
+const c_snake_l = (len, snakePos, snakeColor) => {
+    var snake = create_snake(snakePos, snakeColor);
+    for (var x = 0; x < len; x++) {
+        snake = grow_snake("right", snake);
+    }
+    return snake;
+};
 const random_snake = (box_point) => create_snake(random_location(box_point), "red");
+const is_touching = (snake, food) => {
+    for (let x = 0; x < food.length; x++) {
+        if (collision(snake[0].location, food[x].location)) {
+            return true;
+        }
+    }
+    return false;
+};
+const touches = (snake, food) => (collision((snake[0]).location, food.location));
 const direction_translate_by = {
-    "up": { x: 0, y: 1 },
-    "down": { x: 0, y: -1 },
+    "up": { x: 0, y: -1 },
+    "down": { x: 0, y: 1 },
     "left": { x: -1, y: 0 },
     "right": { x: 1, y: 0 }
 };
+const direction_grow_by = {
+    "up": { x: 0, y: -5.20 },
+    "down": { x: 0, y: 5.20 },
+    "left": { x: -5.20, y: 0 },
+    "right": { x: 5.20, y: 0 }
+};
 const move_snake = (direction, snake) => {
-    const head = snake[0];
-    const body = snake.slice(1, snake.length);
-    //TODO Clean Up
-    const new_head = {
-        location: translate_point(head.location, direction_translate_by[direction]),
-        color: head.color
-    };
-    const new_snake = [new_head, head, ...body.slice(0, body.length - 1)];
-    return eq_location(new_head.location, body[0].location) ? snake : new_snake;
+    const new_head = translate_food(snake[0], direction);
+    return [new_head, ...snake.slice(0, snake.length - 1)];
 };
 const grow_snake = (direction, snake) => {
     //TODO Clean Up
     const new_tail = {
-        location: translate_point(snake[snake.length - 1].location, reflect_point(direction_translate_by[direction])),
+        location: translate_point(snake[snake.length - 1].location, reflect_point(direction_grow_by[direction])),
         color: snake[snake.length - 1].color
     };
     return [...snake, new_tail];
 };
-const translate_point = (point, translateBy) => ({ x: point.x + translateBy.x,
-    y: point.y + translateBy.y
-});
-const reflect_point = ({ x, y }) => ({ x: -x, y: -y });
-export { start, create_snake, random_snake, create_food, random_location, translate_point, move_snake, eq_location, reflect_point, grow_snake };
+export { collision, c_snake_l, touches, create_snake, random_snake, create_food, move_snake, grow_snake };
