@@ -4,7 +4,7 @@
   "description": "My attempt at building snake in ts",
   "main": "index.ts",
   "scripts": {
-    "dist": "mkdir docs && cd docs && mkdir game && cd game && mkdir css && mkdir src && cd .. && cd .. && cp dist/es5/snake.min.js docs/game/src && cp src/html/* docs/game && cp dist/css/* docs/game/css",
+    "dist": "mkdir docs && cd docs &&  mkdir css && mkdir src && cd ../ && cp dist/es5/snake.min.js docs/src && cp src/html/* docs/ && cp dist/css/* docs/css",
     "test": "jest",
     "rollup": "rollup -c",
     "test-watch": "jest --watch",
@@ -14,7 +14,7 @@
     "css-build": "node-sass --omit-source-map-url src/sass/styles.scss dist/css/styles.css",
     "css-watch": "npm run css-build -- --watch",
     "build": "npm run clean && npm run typescript && npm run css-build  && npm run rollup && npm run terser && npm run dist",
-    "start": "npm run build && open docs/game/index.html"
+    "start": "npm run build && open docs/index.html"
   },
   "repository": {
     "type": "git",
