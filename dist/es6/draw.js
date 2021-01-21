@@ -18,9 +18,14 @@ const draw_food = (food, screen) => draw_square(Object.assign(Object.assign({}, 
 const draw_game_food = (food, screen) => {
     food.map(f => draw_food(f, screen));
 };
-const draw_game = (game, screen) => {
-    clear_screen(screen);
-    draw_game_food(game.food, screen);
-    draw_game_food(game.snake, screen);
+const draw_snake = (snake, screen) => {
+    for (var x = 0; x < snake.length; x++) {
+        draw_food(snake[x], screen);
+    }
 };
-export { create_screen, draw_game };
+const draw_state = (state, screen) => {
+    clear_screen(screen);
+    draw_game_food(state.snake, screen);
+    draw_game_food(state.food, screen);
+};
+export { create_screen, draw_state, draw_snake };

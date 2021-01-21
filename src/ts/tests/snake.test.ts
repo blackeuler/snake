@@ -1,14 +1,16 @@
 const { 
   create_snake, 
   create_food, 
-  random_location, 
   random_snake, 
-  start, 
-  translate_point, 
   move_snake, 
-  reflect_point,
   grow_snake,
-  eq_location } = require('../snake');
+   } = require('../snake');
+  const {
+    translate_point,
+    reflect_point,
+    eq_location,
+    random_location
+  } = require('../point');
 
 
 

@@ -1,35 +1,32 @@
-import { create_snake, create_food, move_snake, is_touching, grow_snake } from './snake';
-import { center_location, gen_rand_uni_loc } from './point';
-import { create_screen, draw_game } from './draw';
-const game_screen_bound = { x: window.innerWidth, y: window.innerHeight };
-const create_game = () => {
-    const snake = create_snake(center_location(game_screen_bound), "blue");
-    const food = generate_game_food();
-    return { snake, food };
+import { update_state, init_state } from './state';
+import { create_screen, draw_state } from './draw';
+const create_game = () => ({ screen: create_screen(), state: init_state() });
+const start_game = (game) => step_game(game);
+const hkpHandlers = {
+    ArrowUp: "up",
+    ArrowDown: "down",
+    ArrowRight: "right",
+    ArrowLeft: "left"
 };
-const play_game = (game, screen) => {
-    const new_game = update_game(game);
-    draw_game(new_game, screen);
-    window.requestAnimationFrame((t) => {
-        play_game(new_game, screen);
-    });
+const oppositeDirection = {
+    "up": "down",
+    "down": "up",
+    "left": "right",
+    "right": "left"
 };
-const update_game = (game) => {
-    if (is_touching(game.snake, game.food)) {
-        return { snake: update_snake(grow_snake("up", game.snake)), food: game.food };
-    }
-    const new_game = { snake: update_snake(game.snake), food: game.food };
-    return new_game;
-};
-const update_snake = (snake) => (move_snake("down", snake));
-const generate_game_food = () => {
-    return gen_rand_uni_loc(50, game_screen_bound).map(p => create_food(p, "red"));
-};
-const start_game = (game) => {
-    const screen = create_screen();
-    draw_game(game, screen);
-    window.requestAnimationFrame(() => {
-        play_game(game, screen);
-    });
+const step_game = ({ state, screen }) => {
+    draw_state(state, screen);
+    const handleKeyPress = ({ key }) => {
+        const handler = hkpHandlers[key];
+        if (handler && handler != oppositeDirection[state.playerDirection]) {
+            state.playerDirection = handler;
+        }
+    };
+    document.addEventListener("keydown", handleKeyPress);
+    setTimeout(function () {
+        window.requestAnimationFrame((t) => {
+            step_game({ state: update_state(state), screen: screen });
+        });
+    }, 1000 / 60);
 };
 start_game(create_game());

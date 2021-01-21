@@ -1,5 +1,5 @@
 import { create_food } from './snake';
-import { Game, Square, Screen, Food} from './types';
+import { Snake,State, Square, Screen, Food} from './types';
 import { random_location } from './point';
 
 const create_screen = (): Screen => {
@@ -31,11 +31,16 @@ const draw_game_food = (food: Food[], screen: Screen): void =>{
   food.map(f => draw_food(f,screen));
 }
 
-const draw_game  = ( game: Game, screen: Screen ): void =>{
+const draw_snake = (snake: Snake, screen: Screen):void =>{
+  for(var x =0; x< snake.length; x++){
+   draw_food(snake[x],screen);
+  }
+}
+const draw_state  = ( state: State, screen: Screen ): void =>{
   clear_screen(screen);
-  draw_game_food(game.food, screen);
-  draw_game_food(game.snake, screen);
+  draw_game_food(state.snake, screen);
+  draw_game_food(state.food, screen);
 }
 
 
-export {create_screen, draw_game}
+export {create_screen, draw_state, draw_snake}
